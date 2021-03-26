@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 26, 2021 at 07:23 PM
+-- Generation Time: Mar 26, 2021 at 07:40 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.12
 
@@ -56,8 +56,6 @@ CREATE TABLE `likes` (
 CREATE TABLE `posts` (
   `post_id` int NOT NULL,
   `post` varchar(240) NOT NULL,
-  `like_count` int NOT NULL DEFAULT '0',
-  `share_count` int NOT NULL DEFAULT '0',
   `post_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int NOT NULL,
   `username` varchar(255) NOT NULL
