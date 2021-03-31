@@ -33,10 +33,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Feeds</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Feeds</a>
-                            </li>
                         </ul>
         
                     </div>
@@ -67,7 +63,18 @@
                 </div>
             </nav>
         </header>
-        <main>
+        <main class="container">
+        <div id="post-blog">
+            <form class="input-form">
+            <span class="username">RR</span>
+                <lable for="blog-posting" class="d-none">Write a blog</lable>
+                <textarea id="blog-posting" name="blog" rows="4" cols="50"  placeholder="Tell me your mind...." maxlength="240"></textarea>
+                <button type="submit" class="submit-post">Post</button>
+                <!-- <input type="text" id="blog-posting" name="bolg" > -->
+            </form>
+
+        </div>
+            
         </main>
         <footer class="py-5 footer">
 			<div class="container">

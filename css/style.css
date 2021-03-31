@@ -1,3 +1,14 @@
+input:focus{
+    outline: none;
+}
+/* https://www.w3docs.com/snippets/css/how-to-disable-the-resizing-of-the-textarea-element.html
+    Created By: W3docs
+    Accessed On: 31 March, 2021 
+    how to make textearea of fix size*/
+textarea {
+    resize: none;
+    overflow: hidden;
+}
 .yellow{
     color: #F0A202;
 }
@@ -75,4 +86,61 @@ nav{
 footer{
     background-color: rgb(0, 3, 48);
     color: rgba(255, 255, 255, 0.479);
+}
+
+
+/*****************************Home************************** */
+
+#post-blog{
+    border: 1px solid black;
+    width: 50%;
+    margin: 35px auto;
+    position: relative;
+    /* background-color: #293241; */
+}
+
+#post-blog button{
+    position:absolute;
+    right: -100px;
+    bottom: 30px;
+}
+#blog-posting:focus{
+    outline: none;
+}
+
+.input-form{
+    /* line-height: 70px; */
+    position: relative;
+    height: 120px;
+    display: inline-block;
+}
+.username{
+    background-color: #F0A202;
+    color: white;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    text-align: center;
+    line-height: 80px;
+    font-size: 45px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#blog-posting{
+    margin: 23px 0px 0px 120px;
+    height: 80px;
+    width: 400px;
+    border: none;
+}
+.submit-post{
+    padding-right: 15px;
+    margin-left: 15px;  
+    border-radius: 20px; 
+    background-color: rgb(0, 3, 48);
+    color: white; 
+    padding: .5rem 1rem;  
+    text-decoration: none;
 }
