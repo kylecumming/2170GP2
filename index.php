@@ -27,7 +27,9 @@
             </form>
 
         </div>
-            
+        <div id="feed">
+            <?php require_once "includes/load-posts.php"; ?>
+        </div>
         </main>
         <footer class="py-5 footer">
 			<div class="container">
