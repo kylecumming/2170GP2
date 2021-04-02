@@ -48,7 +48,8 @@
                         WHERE 
                         U.user_id = {$_SESSION['userID']} AND 
                        (U.first_name LIKE '$wildCarded' OR
-                        U.last_name  LIKE '$wildCarded')";
+                        U.last_name  LIKE '$wildCarded')
+                        ORDER BY P.post_date DESC";
 
                
         }
@@ -61,7 +62,8 @@
                         LEFT JOIN `blocks` B ON (P.user_id != B.blocked_user_id)
                         WHERE 
                         U.user_id = {$_SESSION['userID']} AND 
-                        U.username LIKE '$wildCarded'";
+                        U.username LIKE '$wildCarded'
+                        ORDER BY P.post_date DESC";
         }
         //echo $query;
     }
@@ -73,37 +75,38 @@
                              JOIN `posts` P  ON (F.followed_user_id = P.user_id)
                         LEFT JOIN `blocks` B ON (P.user_id != B.blocked_user_id)
                         WHERE 
-                        U.user_id = {$_SESSION['userID']}";
+                        U.user_id = {$_SESSION['userID']}
+                        ORDER BY P.post_date DESC";
         
     }
     $result = $mysqli->query($query);
-        //check to see if query was properly executed
-        if (!$result)
-        {
-            die("Error executing query: ($dbconnection->errno) $dbconnection->error<br>SQL = $query");
-        }
+    //check to see if query was properly executed
+    if (!$result)
+    {
+        die("Error executing query: ($dbconnection->errno) $dbconnection->error<br>SQL = $query");
+    }
 
-        //Check to see if any rows were returned
-        if ($result->num_rows == 0)
-        {
-            echo "<p>Sorry, no tweeps available</p>";
-        }
+    //Check to see if any rows were returned
+    if ($result->num_rows == 0)
+    {
+        echo "<p>Sorry, no tweeps available</p>";
+    }
 
-        $resultIndex = 0;
-        //Output any rows returned
-        while ($row = $result->fetch_assoc())
-        {       
-                    
-            echo <<<END
-                    <hr>
-                    <section id="result1" class="space-above-below">            
-                    <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
-                    <p class="">{$row['post']}</p> 
-                    <p class="text-muted">Likes: {$row['likeCount']}</p>
+    $resultIndex = 0;
+    //Output any rows returned
+    while ($row = $result->fetch_assoc())
+    {       
+                
+        echo <<<END
+                <hr>
+                <section id="result1" class="space-above-below">            
+                <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
+                <p class="">{$row['post']}</p> 
+                <p class="text-muted">Likes: {$row['likeCount']}</p>
 
-                    </section>
+                </section>
 
 END;
-            $resultIndex++;
-        } 
+        $resultIndex++;
+    } 
 ?>
