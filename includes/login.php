@@ -51,14 +51,19 @@
                     $user_query = "SELECT * FROM `users` WHERE username LIKE '$username'";
 
                     $results = $mysqli->query($user_query);
-                    $row = $results->fetch_row();
                     if(!empty($results)) {
-                        if($username == $row[1]) {
-                            if($password == $row[5])  {
-                                $_SESSION['loggedin'] = true;  
-                                $_SESSION['username'] = $username;
-                                $_SESSION["userID"] = $row[0];
-                                header("location: ../index.php");
+                        $row = $results->fetch_row();
+                        if(!empty($row)) {
+                            if($username == $row[1]) {
+                                if($password == $row[5])  {
+                                    $_SESSION['loggedin'] = true;  
+                                    $_SESSION['username'] = $username;
+                                    $_SESSION["userID"] = $row[0];
+                                    header("location: ../index.php");
+                                }
+                                else {
+                                    error(); 
+                                }
                             }
                             else {
                                 error(); 
@@ -66,8 +71,7 @@
                         }
                         else {
                             error(); 
-                        }
-                        
+                        }    
                     }
                     else {
                         error(); 

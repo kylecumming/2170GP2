@@ -60,8 +60,13 @@
                     <ul class="navbar-nav mr-auto sign-in">
                         <li class="nav-link">
                             <?php 
-                                if ($_SESSION['loggedin']){//if logged in (still need to know how we are tracking user)
-                                    echo '<a class="sign" href="includes/logout.php">Logout</a>';
+                                if(!empty($_SESSION['loggedin'])) {
+                                    if ($_SESSION['loggedin']){//if logged in (still need to know how we are tracking user)
+                                        echo '<a class="sign" href="includes/logout.php">Logout</a>';
+                                    }
+                                    else{
+                                        echo '<a class="sign" href="includes/login.php">Login</a>';
+                                    }
                                 }
                                 else{
                                     echo '<a class="sign" href="includes/login.php">Login</a>';
