@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/style.css">
 
         <?php 
-		include_once "includes/db.php";
+		include_once "db.php";
 		session_start();
 		?>
   	</head>

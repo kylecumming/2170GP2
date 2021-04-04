@@ -18,7 +18,7 @@
     <body>
         <main class="container">
         <div id="post-blog">
-            <form class="input-form">
+            <form class="input-form" action="includes/submit.php">
             <span class="username">RR</span>
                 <lable for="blog-posting" class="d-none">Write a blog</lable>
                 <textarea id="blog-posting" name="blog" rows="4" cols="50"  placeholder="Tell me your mind...." maxlength="240"></textarea>

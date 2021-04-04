@@ -9,9 +9,10 @@
 
 	$mysqli = new mysqli($hostservername, $username, $password, $dbname);
 
-	if($mysqli->errno)
+
+	if($mysqli->connect_error)
 	{
-		die("Failed to connect to mysql: ($mysqli->connect_errno) $mysqli->errno");
+		die("Failed to connect to mysql: ($mysqli->connect_error) $mysqli->connect_error");
 	} else {
     	echo "DB Connected! (Remove after development)";
     	//Connected statement can be un commented for debugging
