@@ -14,36 +14,25 @@
 	$content = htmlspecialchars(stripslashes(trim($postContent)));
 	//$date = date("Y-m-d");
 
-    $username = "dowell";//$_SESSION['username'];
-	$userID = "1";//$_SESSION["userID"] ;
+    $username = $_SESSION['username'];
+	$userID = $_SESSION["userID"];
 
-	$querySQL = "INSERT INTO posts (post_id, post, user_id, username) VALUES (NULL, '$content', '$userID', '$username')";
-	
-    echo "<br>";
-    echo $content;
-    echo "<br>";
-    echo $username;
-    echo "<br>";
-    echo $userID;
-    echo "<br>";
-    echo $querySQL;
-    
-    echo "<br>";
-    echo "<br>";
-
-	$result = mysqli_query($mysqli, $querySQL); 
-	echo $mysqli ->error;
+	$user_query = "INSERT INTO posts (post_id, post, user_id, username) VALUES (NULL, '$content', '$userID', '$username')";
 	
 
-	if($result === true){
+	$results = $mysqli->query($user_query);
+
+	
+
+	if($results === true){
 		$_SESSION["submitted"] = 1;
-        echo "<br><h1>SUBMITTED</h1>";
+        //echo "<br><h1>SUBMITTED</h1>";
 	}
 	else{
 		die("The Blog did not post.");
 	}
 
-	//header("location: ../index.php");
+	header("location: ../index.php");
 	
 	require_once "footer.php";
 ?>

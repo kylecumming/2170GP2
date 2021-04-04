@@ -38,6 +38,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Feeds</a>
                             </li>
+                        <?php
+                        if($_SESSION['admin'] == 1){
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="includes/admin.php">Administrative</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+
                         </ul>
         
                     </div>
@@ -67,10 +77,13 @@
                                     else{
                                         echo '<a class="sign" href="includes/login.php">Login</a>';
                                     }
+                                   
                                 }
                                 else{
                                     echo '<a class="sign" href="includes/login.php">Login</a>';
                                 }
+                                
+                                
                             ?>
                         </li>
                     </ul>  

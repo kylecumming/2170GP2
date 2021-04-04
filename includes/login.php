@@ -49,10 +49,9 @@
                     $password = $_POST['password'];
                     
                     $user_query = "SELECT * FROM `users` WHERE username LIKE '$username'";
-                    echo $user_query;
-                    echo "<br>";
 
-                    $results = mysqli_query($mysqli, $user_query);
+                    $results = $mysqli->query($user_query);
+
                     if(!empty($results)) {
                         $row = $results->fetch_row();
                         if(!empty($row)) {
@@ -61,6 +60,7 @@
                                     $_SESSION['loggedin'] = true;  
                                     $_SESSION['username'] = $username;
                                     $_SESSION['userID'] = $row[0];
+                                    $_SESSION['admin'] = $row[6];
                                     header("location: ../index.php");
                                 }
                                 else {
@@ -72,12 +72,10 @@
                             }
                         }
                         else {
-                            echo "empty rows";
                             error(); 
                         }    
                     }
                     else {
-                        echo "empty results";
                         error(); 
                     }
                 }

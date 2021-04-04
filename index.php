@@ -17,6 +17,14 @@
   	</head>
     <body>
         <main class="container">
+        <?php
+           if($_SESSION["submitted"] == 1){
+                echo "<div id= 'submitSuccess'>";
+                echo "<h4>Your post was submitted successfully!</h4>";
+                echo "</div>";
+                $_SESSION["submitted"] = 0;
+        }
+        ?>
         <div id="post-blog">
             <form class="input-form" action="includes/submit.php">
             <span class="username">RR</span>
