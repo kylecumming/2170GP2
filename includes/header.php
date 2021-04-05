@@ -33,7 +33,7 @@
                                 <a class="nav-link" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="includes/profile.php?clickedUser=1">My Profile</a>
+                                <a class="nav-link" href="profile.php?clickedUser=1">My Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Feeds</a>
