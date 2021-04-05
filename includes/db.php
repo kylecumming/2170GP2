@@ -1,17 +1,19 @@
 <?php
-	
-	$hostservername = "localhost:3307";
+	//Database connection script
+	//Connecting to 2170db database
+	//Username and Password will need to be modified to meet local setup
+	$hostservername = "localhost";
 	$username = "root";
 	$password = "root";
-	$dbname = "jedidb";//Change for out database
+	$dbname = "jediDB";
 
-	$dbconnection = new mysqli($hostservername, $username, $password, $dbname);
+	$mysqli = new mysqli($hostservername, $username, $password, $dbname);
 
-	if ($dbconnection->connect_error){
-		die("Git Wrecked Nurd<br>" . $dbconnection->connect_error);
+	if($mysqli->errno)
+	{
+		die("Failed to connect to mysql: ($mysqli->connect_errno) $mysqli->errno");
+	} else {
+    	echo "DB Connected! (Remove after development)";
+    	//Connected statement can be un commented for debugging
 	}
-	else {
-		//echo "<h1>Connected!</h1>";
-	}
-
 ?>

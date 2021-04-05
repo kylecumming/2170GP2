@@ -11,7 +11,10 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/style.css">
 
-        <?php include_once "includes/db.php"?>
+        <?php 
+		include_once "includes/db.php";
+		session_start();
+		?>
   	</head>
     <body>
         <header>
@@ -57,11 +60,16 @@
                     <ul class="navbar-nav mr-auto sign-in">
                         <li class="nav-link">
                             <?php 
-                                if (true){//if logged in (still need to know how we are tracking user)
-                                    echo '<a class="sign" href="#">Logout</a>';
+                                if(!empty($_SESSION['loggedin'])) {
+                                    if ($_SESSION['loggedin']){//if logged in (still need to know how we are tracking user)
+                                        echo '<a class="sign" href="includes/logout.php">Logout</a>';
+                                    }
+                                    else{
+                                        echo '<a class="sign" href="includes/login.php">Login</a>';
+                                    }
                                 }
                                 else{
-                                    echo '<a class="sign" href="#">Login</a>';
+                                    echo '<a class="sign" href="includes/login.php">Login</a>';
                                 }
                             ?>
                         </li>
