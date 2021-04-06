@@ -10,7 +10,7 @@ if (!isset($_GET["clickedUser"])){
 $uid = $_GET["clickedUser"];
 
 $query = "SELECT * FROM `users` WHERE `user_id` = '{$uid}'";
-$result = $dbconnection->query($query);
+$result = $mysqli->query($query);
 $userData = $result->fetch_assoc();
 $isMe=false;
 
@@ -32,19 +32,19 @@ else{//If it is someone elses profile
 
 <?php
     $query = "SELECT COUNT(*) FROM `posts` WHERE `user_id` = '{$uid}'";
-    $result = $dbconnection->query($query);
+    $result = $mysqli->query($query);
     $numPosts = $result->fetch_row();
 
     echo "<h3>Posts: $numPosts[0]</h3>";
 
     $query = "SELECT COUNT(*) FROM `following` WHERE `followed_user_id` = '{$uid}'";
-    $result = $dbconnection->query($query);
+    $result = $mysqli->query($query);
     $numFollowers = $result->fetch_row();
 
     echo "<h3>Followers: $numFollowers[0]</h3>";
 
     $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = '{$uid}'";
-    $result = $dbconnection->query($query);
+    $result = $mysqli->query($query);
     $numFollowing = $result->fetch_row();
 
     echo "<h3>Following: $numFollowing[0]</h3>";
