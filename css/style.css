@@ -53,7 +53,7 @@ nav{
     outline: none;
   }
 
-.sign{
+.sign, .login{
 
     padding-right: 15px;
     margin-left: 15px;  
@@ -64,7 +64,7 @@ nav{
     text-decoration: none;
     border: 2px solid #F0A202;
 }
-.sign:hover{
+.sign:hover, .login:hover{
     background-color: white;
     border: 2px solid #F0A202;
     color: #F0A202;
@@ -135,12 +135,99 @@ footer{
     width: 400px;
     border: none;
 }
-.submit-post{
+.submit-post, #submitAdmin, #addUserStart{
     padding-right: 15px;
     margin-left: 15px;  
     border-radius: 20px; 
+    border: none;
     background-color: rgb(0, 3, 48);
     color: white; 
     padding: .5rem 1rem;  
     text-decoration: none;
+}
+
+.submit-post:focus, #submitAdmin:focus, #addUserStart:focus{
+    outline: none;
+}
+
+
+/* *****************************Login Page ****************************************** */
+.login-heading{
+    margin-bottom: 30px;
+    color: rgb(31, 31, 31);
+}
+.main-login{    
+    width: 35%;
+    text-align: center;
+    margin: 100px auto;
+
+}
+.password, .uname{
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgb(201, 201, 201);
+    margin-bottom: 12px;
+}
+.password:focus, .uname:focus{
+    color: #212529; 
+    background-color: #fff;
+    border-color: #76acfd;
+}
+
+.login{
+    width: 30%;
+}
+.login:focus{
+    outline: none;
+}
+
+/* *************************************admin************************************************ */
+.ask-create{
+    width: 40%;
+    text-align: center;
+    margin: 30px auto;
+}
+.create-user{
+    width: 40%;
+    margin: 30px auto;
+}
+
+.user-input{
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid rgb(167, 167, 167);
+    
+}
+
+.user-input:focus{
+    border-color: #76acfd;
+    box-shadow: 0 0 5px #76acfd;
+}
+
+
+#fname{
+    margin-right: 5px;
+}
+
+#lname{
+    margin-left: 5px;
+}
+
+#admin, #blogger{
+    margin-top: 15px;
+    
+}
+#submitAdmin{
+    margin-top: 20px;
+
+}
+#addUserStart:hover{
+
+    background-color: #F0A202;
+    
+
 }

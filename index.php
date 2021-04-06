@@ -10,62 +10,25 @@
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/style.css">
+
+        <?php
+        include_once "includes/header.php";
+        ?>
   	</head>
     <body>
-        <header>
-        <!-- https://getbootstrap.com/docs/4.0/components/navbar/
-            Created By: BootStrap 
-            Accessed On: 31 March, 2021
-        -->
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand app-name" href="#">Jedi<span class="yellow">Tweeps</span></a>
-                
-                    <div class="collapse navbar-collapse" id="navbarText">                        
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">My Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Feeds</a>
-                            </li>
-                        </ul>
-        
-                    </div>
-        
-                    <div class="search-form">
-                        <form method="post"> 
-                
-                            <lable for="srch" class="d-none">Search</lable>
-                            <input type="text" id="srch" name="searchKeywords" placeholder="Search By">
-
-                            <label for="searchBy" class="d-none">Choose a car:</label>
-                            <select name="searchOption" id="searchBy">
-                                <option value="name">Name</option>
-                                <option value="uname">Username</option>
-                            </select>
-                
-                        </form>
-                
-                    </div>
-                    <ul class="navbar-nav mr-auto sign-in">
-                        <li class="nav-link">
-                            <a class="sign" href="#">Logout</a>
-                        </li>
-                        <li class="nav-link">
-                            <a class="sign" href="#">Login</a>
-                        </li>
-                    </ul>  
-                </div>
-            </nav>
-        </header>
         <main class="container">
+        <?php
+           if($_SESSION["submitted"] == 1){
+                echo "<div id= 'submitSuccess'>";
+                echo "<h4>Your post was submitted successfully!</h4>";
+                echo "</div>";
+                $_SESSION["submitted"] = 0;
+        }
+    
+        if(isset($_SESSION['admin']) && ($_SESSION['admin'] == 0 || $_SESSION['admin'] ==1)){
+        ?>
         <div id="post-blog">
-            <form class="input-form">
+            <form class="input-form" action="includes/submit.php">
             <span class="username">RR</span>
                 <lable for="blog-posting" class="d-none">Write a blog</lable>
                 <textarea id="blog-posting" name="blog" rows="4" cols="50"  placeholder="Tell me your mind...." maxlength="240"></textarea>
@@ -74,7 +37,12 @@
             </form>
 
         </div>
-            
+        <?php
+        }
+        ?>
+        <div id="feed">
+            <?php require_once "includes/load-posts.php"; ?>
+        </div>
         </main>
         <footer class="py-5 footer">
 			<div class="container">
@@ -86,5 +54,3 @@
 		
     </body>
 </html>
-    
-      

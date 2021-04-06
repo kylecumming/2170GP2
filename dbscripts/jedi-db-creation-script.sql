@@ -36,6 +36,7 @@ CREATE TABLE `following` (
   `followed_user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 -- --------------------------------------------------------
 
 --
