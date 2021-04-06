@@ -1,7 +1,7 @@
 <?php
 require_once "includes/header.php";
 
-if (!isset($_GET["clickedUser"]) || !isset($_SESSION['loggedin'])) {
+if (!isset($_GET["clickedUser"])) {
     header("Location: index.php?no-access=1");
     die();
 }
@@ -40,13 +40,13 @@ $isMe = false;
         $result = $mysqli->query($query);
         $numFollowers = $result->fetch_row();
 
-        echo "<h3><a href='followers.php'>Followers: $numFollowers[0]</a></h3>";
+        echo "<h3><a href='followers.php?user=$uid'>Followers: $numFollowers[0]</a></h3>";
 
         $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = {$uid}";
         $result = $mysqli->query($query);
         $numFollowing = $result->fetch_row();
 
-        echo "<h3><a href='following.php'>Following: $numFollowing[0]</a></h3>";
+        echo "<h3><a href='following.php?user=$uid'>Following: $numFollowing[0]</a></h3>";
         ?>
     </div>
     <div id="activityFeed">

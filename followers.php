@@ -4,17 +4,16 @@ require_once "includes/header.php"
 <main lass="container">
     <h1>Followers</h1>
     <?php
-    if (isset($_SESSION['userID'])) {
-        $userId = $_SESSION['userID'];
-    }
-    //if user id is not set then they must not be logged in
-    else {
-        header("Location: index.php?no-access=2");
+    if (!isset($_GET["user"])) {
+        header("Location: index.php?no-access=1");
         die();
     }
+
+    $uid = $_GET["user"];
+
     $query = "SELECT `user_id` 
               FROM `following` 
-              WHERE `followed_user_id` = {$userId}";
+              WHERE `followed_user_id` = {$uid}";
     $result = $mysqli->query($query);
     if ($result) {
         echo "<hr>";
