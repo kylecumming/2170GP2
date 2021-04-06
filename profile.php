@@ -14,6 +14,43 @@ $userData = $result->fetch_assoc();
 $isMe = false;
 
 ?>
+
+<?php
+//if user pressed follow button
+if (isset($_POST['followButton'])) {
+    //adding following information into db
+    if (isset(($_SESSION["loggedin"]))) {
+        $loggedInUser = $_SESSION["userID"];
+        $userToFollow = $_POST['followButton'];
+
+        //looking in db to see if logged in user is following clicked user
+        $newFollow = "INSERT INTO `following`(`user_id`, `followed_user_id`) 
+                          VALUES ($loggedInUser,$userToFollow)";
+        $resultNewFollow = $mysqli->query($newFollow);
+        if ($resultNewFollow) {
+            unset($_POST['followButton']);
+        }
+    }
+}
+
+//if user pressed unfollow button
+if (isset($_POST['unfollowButton'])) {
+    //adding following information into db
+    if (isset(($_SESSION["loggedin"]))) {
+        $loggedInUser = $_SESSION["userID"];
+        $userToUnfollow = $_POST['unfollowButton'];
+
+        //looking in db to see if logged in user is following clicked user
+        $newUnfollow = "DELETE FROM `following` 
+                      WHERE `user_id` = $loggedInUser 
+                      AND `followed_user_id` = $userToUnfollow";
+        $resultNewUnfollow = $mysqli->query($newUnfollow);
+        if ($resultNewUnfollow) {
+            unset($_POST['unfollowButton']);
+        }
+    }
+}
+?>
 <main class="container">
     <div id="userInfo">
         <h2 style="text-align: center">
@@ -28,7 +65,6 @@ $isMe = false;
             ?>
             Profile </h2>
         <span class="username" style="align-content: center"><?php echo substr($userData["first_name"], 0, 1) . substr($userData["last_name"], 0, 1) ?></span>
-
         <?php
         $query = "SELECT COUNT(*) FROM `posts` WHERE `user_id` = '{$uid}'";
         $result = $mysqli->query($query);
@@ -42,12 +78,46 @@ $isMe = false;
 
         echo "<h3><a href='followers.php?user=$uid'>Followers: $numFollowers[0]</a></h3>";
 
-        $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = {$uid}";
+        $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = '{$uid}'";
         $result = $mysqli->query($query);
         $numFollowing = $result->fetch_row();
 
         echo "<h3><a href='following.php?user=$uid'>Following: $numFollowing[0]</a></h3>";
+
         ?>
+        <!-- When follow button is pressed db will be updated -->
+        <form action="" method='post'>
+            <?php
+            //checking if user is logged in and on a profile that is not theirs
+            if (isset(($_SESSION["loggedin"]))) {
+                if (!$isMe && $_SESSION["loggedin"]) {
+                    $loggedInUser = $_SESSION["userID"];
+
+                    //looking in db to see if logged in user is following clicked user
+                    $queryIsFollowing = "SELECT COUNT(*) 
+                                         FROM `following` 
+                                         WHERE `user_id` = '{$loggedInUser}'
+                                         AND `followed_user_id` = '{$uid}'";
+                    $resultIsFollowing = $mysqli->query($queryIsFollowing);
+
+
+                    if ($resultIsFollowing) {
+                        $isFollowing = $resultIsFollowing->fetch_row();
+                        //$test = 0;
+                        //if user is not following user
+                        if ($isFollowing[0] == 0) {
+                            echo "<button type='submit' id='followButton' name='followButton' value=$uid>Follow</button>";
+                        }
+                        //if user is following the user
+                        else {
+                            echo "<button type='submit' id='unfollowButton' name='unfollowButton' value=$uid>Unfollow</button>";
+                        }
+                    }
+                }
+            }
+
+            ?>
+        </form>
     </div>
     <div id="activityFeed">
         <h2>
