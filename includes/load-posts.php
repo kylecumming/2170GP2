@@ -86,16 +86,14 @@
         while ($row = $result->fetch_assoc())
         {       
                     
-            echo <<<END
+            echo "
                     <hr>
-                    <section id="result1" class="space-above-below">            
-                    <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
-                    <p class="">{$row['post']}</p> 
-                    <p class="text-muted">Likes: {$row['likeCount']}</p>
+                    <section id='result1' class='space-above-below'>            
+                    <h6 class='fw-light'>Posted by {$row['username']} on {$row['post_date']}</h6>
+                    <p class=''>{$row['post']}</p> 
+                    <p class='text-muted'>Likes: {$row['likeCount']}</p>
 
-                    </section>
-
-    END;
+                    </section>";
             $resultIndex++;
         } 
     }
