@@ -2,8 +2,6 @@
 	//Process the submitted blog post here.
 	
 	//SANITIZE DATA BEFORE SUBMISSION TO JEDIBLOG
-	
-
 	require_once "header.php";
 
 	
@@ -35,4 +33,3 @@
 	header("location: ../index.php");
 	
 	require_once "footer.php";
-?>
