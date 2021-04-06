@@ -63,6 +63,37 @@ else{
 ?>
  Activity</h2>
 
+<?php 
+
+$query = "SELECT P.post, P.post_date, P.username
+                                 FROM `users` U
+                                 JOIN `posts` P  ON (U.user_id = P.user_id)
+                                 LEFT JOIN `shares` S ON (U.user_id = S.user_id) 
+                            WHERE 
+                            U.user_id = {$uid}";
+
+$result = $mysqli->query($query);
+
+while ($row = $result->fetch_assoc())
+{       
+            
+    echo <<<END
+            <hr>
+            <section id="result1" class="space-above-below">            
+            <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
+            <p class="">{$row['post']}</p> 
+            <p class="text-muted">Likes: {$row['likeCount']}</p>
+
+            </section>
+
+END;
+    $resultIndex++;
+} 
+
+
+// Could make array full of posts
+?>
+
  <!-- 
      Here we need to a joint sql query thing. We need to get all of the shit the user has posted, shared, and liked, then sory it by date, with the most recent thing being at the top
  -->

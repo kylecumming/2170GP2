@@ -2,7 +2,7 @@
 	//Database connection script
 	//Connecting to 2170db database
 	//Username and Password will need to be modified to meet local setup
-	$hostservername = "localhost:8889";
+	$hostservername = "localhost:3307";
 	$username = "root";
 	$password = "root";
 	$dbname = "jediDB";
