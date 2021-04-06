@@ -21,17 +21,18 @@
     }    
     else 
     {
+    	echo $_SESSION['userID'];
         $result;
         $query = "SELECT P.post, P.post_date, P.username, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
                                  FROM `users` U
                                  JOIN `following` F ON (U.user_id = F.user_id)
-                                 JOIN `shares` S ON (F.followed_user_id = S.user_id)
+                                 LEFT JOIN `shares` S ON (F.followed_user_id = S.user_id)
                                  JOIN `posts` P  ON (F.followed_user_id = P.user_id OR S.post_id = P.post_id)
                             WHERE 
                             U.user_id = {$_SESSION['userID']} AND 
                             NOT EXISTS (SELECT blocks.* FROM blocks WHERE 
-                                       (blocks.blocked_user_id = 1 AND blocks.user_id = P.user_id) OR
-                                       (blocks.blocked_user_id = p.user_id AND blocks.user_id = 1)) ";
+                                       (blocks.blocked_user_id = {$_SESSION['userID']} AND blocks.user_id = P.user_id) OR
+                                       (blocks.blocked_user_id = p.user_id AND blocks.user_id = {$_SESSION['userID']})) ";
 
         //Check to see if any keywords were given
         if(isset($_POST['searchKeywords']) && $_POST['searchKeywords'] != "")
