@@ -9,10 +9,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">	
 
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="../css/style.css">
 
         <?php 
-		include_once "includes/db.php";
+		include_once "db.php";
 		session_start();
 		?>
   	</head>
@@ -38,6 +38,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Feeds</a>
                             </li>
+                        <?php
+                        if($_SESSION['admin'] == 1){
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="includes/admin.php">Administrative</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+
                         </ul>
         
                     </div>
@@ -67,10 +77,13 @@
                                     else{
                                         echo '<a class="sign" href="includes/login.php">Login</a>';
                                     }
+                                   
                                 }
                                 else{
                                     echo '<a class="sign" href="includes/login.php">Login</a>';
                                 }
+                                
+                                
                             ?>
                         </li>
                     </ul>  
