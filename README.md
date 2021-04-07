@@ -31,7 +31,8 @@
 - User Story #:
 
 
-## Name of the App: JediTweeps
+## Name of the App: 
+JediTweeps
 
 ## Summary of the App:
 Micro-blog web application that allows users to share their thoughts with other users
