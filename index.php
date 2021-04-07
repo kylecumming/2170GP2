@@ -25,6 +25,13 @@ require_once "includes/header.php";
     </div>
     <div id="feed">
         <?php require_once "includes/load-posts.php"; ?>
+        <?php 
+            $userid = $_GET['userID'];
+            $postid = $_GET['postid'];
+            $user_query = "INSERT INTO likes (user_id, post_id) VALUES ($userid, $postid)";
+            $results = $mysqli->query($user_query);
+
+        ?>
     </div>
 </main>
 <?php
