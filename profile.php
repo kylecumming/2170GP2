@@ -140,7 +140,7 @@ if (isset($_POST['unfollowButton'])) {
 
         <?php
 
-        $query = "SELECT P.post, P.post_date, P.username
+        $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id
                                  FROM `users` U
                                  JOIN `posts` P  ON (U.user_id = P.user_id)
                                  LEFT JOIN `shares` S ON (U.user_id = S.user_id) 
@@ -157,10 +157,12 @@ if (isset($_POST['unfollowButton'])) {
             <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
             <p class="">{$row['post']}</p> 
             <p class="text-muted">Likes: {$row['likeCount']}</p>
+            END;
+            if (!$isMe){
+                echo '<a href="includes/share.php?postshare='.$row["post_id"].'&profile='.$row["user_id"].'">Share</a>';
+            }
 
-            </section>
-
-END;
+            echo "</section>";
             $resultIndex++;
         }
 

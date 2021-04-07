@@ -95,8 +95,13 @@ if (!isset($_SESSION['userID'])) {
                     echo "<form action='index.php' method='GET'>
                             <input type='submit' value='like' name='like$row[post_id]'/>
                           </form> 
-                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='btn btn-primary'>User Profile</a>
-                    </section>";
+                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='btn btn-primary'>User Profile</a>";
+                    //Share button
+                    if ($row["user_id"]!=$_SESSION["userID"]){
+                        echo '<a href="share.php?postshare='.$row["post_id"].'">Share</a>';
+                    }
+                          
+                    echo '</section>';
         $resultIndex++;
     }
 }

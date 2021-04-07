@@ -36,9 +36,13 @@ session_start();
                         <li class="nav-item active">
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.php?clickedUser=<?php echo $_SESSION["userID"] ?>">My Profile</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION["userID"])){
+                        echo '<li class="nav-item">';
+                        echo    '<a class="nav-link" href="profile.php?clickedUser='.$_SESSION["userID"].'">My Profile</a>';
+                        echo '</li>';
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Feeds</a>
                         </li>
