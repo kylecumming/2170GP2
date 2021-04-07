@@ -118,6 +118,13 @@ if (isset($_POST['unfollowButton'])) {
 
             ?>
         </form>
+        <?php
+            require "includes/block.php";
+        ?>
+        <form action="" method='post'>
+            <input type='submit' value='block' name='block'/>
+        </form>
+
     </div>
     <div id="activityFeed">
         <h2>

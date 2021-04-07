@@ -23,7 +23,7 @@ if (!isset($_SESSION['userID'])) {
 } else {
     echo $_SESSION['userID'];
     $result;
-    $query = "SELECT P.post, P.post_date, P.username, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
+    $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
                                  FROM `users` U
                                  JOIN `following` F ON (U.user_id = F.user_id)
                                  LEFT JOIN `shares` S ON (F.followed_user_id = S.user_id)
@@ -82,8 +82,20 @@ if (!isset($_SESSION['userID'])) {
                     <section id='result1' class='space-above-below'>            
                     <h6 class='fw-light'>Posted by {$row['username']} on {$row['post_date']}</h6>
                     <p class=''>{$row['post']}</p> 
-                    <p class='text-muted'>Likes: {$row['likeCount']}</p>
-
+                    <p class='text-muted'>Likes: {$row['likeCount']}</p>";
+                    
+                    //if($_GET['like' . $row[post_id]]){
+                      //  $userid = $_SESSION['userID'];
+                        //$postid = $row['post_id'];
+                        //$user_query = "INSERT INTO likes (user_id, post_id) VALUES ($userid, $postid)";
+                        //$results = $mysqli->query($user_query);
+                    //}
+                    require "likes.php";
+                    //like button
+                    echo "<form action='index.php' method='GET'>
+                            <input type='submit' value='like' name='like$row[post_id]'/>
+                          </form> 
+                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='btn btn-primary'>User Profile</a>
                     </section>";
         $resultIndex++;
     }
