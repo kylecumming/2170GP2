@@ -1,4 +1,14 @@
 <?php
+/*
+    * Feature: As a micro blog author I want to follow other micro blog authors
+    * Developed By: Jake Coyne; B00775132; jc910209@dal.ca
+    * This feature allows a logged in user to visit other users profile 
+    * and choose to follow or un follow them, which will update the db and the users page
+    * This feature is implemented using a form to get whether unfollow or follow was pressed
+    * and sql scripts that insert a new row or deletes a row in the following db table
+    * 
+    * Comments with "Follow Feature" Represent the code written by Jake Coyne
+*/
 require_once "includes/header.php";
 
 if (!isset($_GET["clickedUser"])) {
@@ -16,35 +26,54 @@ $isMe = false;
 ?>
 
 <?php
+/*
+    Follow Feature: Managing POST variables from form for follow button
+*/
+
 //if user pressed follow button
 if (isset($_POST['followButton'])) {
-    //adding following information into db
+    //checking the user is logged in and can follow another user
     if (isset(($_SESSION["loggedin"]))) {
+        //setting logged in user id info from session variable
         $loggedInUser = $_SESSION["userID"];
+        //setting user id for the user to follow based on POST value
         $userToFollow = $_POST['followButton'];
 
-        //looking in db to see if logged in user is following clicked user
+        //query to add new row into following db table
         $newFollow = "INSERT INTO `following`(`user_id`, `followed_user_id`) 
                           VALUES ($loggedInUser,$userToFollow)";
+        //executing query
         $resultNewFollow = $mysqli->query($newFollow);
+
+        //if the query was successful unset the follow button post variable
+        //this is done to avoid the possibility of two inserts happening
         if ($resultNewFollow) {
             unset($_POST['followButton']);
         }
     }
 }
+/*
+    Follow Feature: Managing POST variables from form for unfollow button
+*/
 
 //if user pressed unfollow button
 if (isset($_POST['unfollowButton'])) {
-    //adding following information into db
+    //checking the user is logged in and can unfollow another user
     if (isset(($_SESSION["loggedin"]))) {
+        //setting logged in user id info from session variable
         $loggedInUser = $_SESSION["userID"];
+        //setting user id for the user to unfollow based on POST value
         $userToUnfollow = $_POST['unfollowButton'];
 
-        //looking in db to see if logged in user is following clicked user
+        //query to delete row from following db table
         $newUnfollow = "DELETE FROM `following` 
                       WHERE `user_id` = $loggedInUser 
                       AND `followed_user_id` = $userToUnfollow";
+        //executing query
         $resultNewUnfollow = $mysqli->query($newUnfollow);
+
+        //if the query was successful unset the unfollow button post variable
+        //this is done to avoid the possibility of two deletes happening
         if ($resultNewUnfollow) {
             unset($_POST['unfollowButton']);
         }
@@ -76,40 +105,57 @@ if (isset($_POST['unfollowButton'])) {
         $result = $mysqli->query($query);
         $numFollowers = $result->fetch_row();
 
+        /*
+                Follow Feature: Made Follwers anchor link w/ GET url to pass uid to followers php pages
+        */
+        //anchor link to redirect to followers.php with uid GET information
         echo "<h3><a href='followers.php?user=$uid'>Followers: $numFollowers[0]</a></h3>";
 
         $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = '{$uid}'";
         $result = $mysqli->query($query);
         $numFollowing = $result->fetch_row();
 
+        /*
+                Follow Feature: Made Follwing anchor link w/ GET url to pass uid to followers php pages
+        */
+        //anchor link to redirect to following.php with uid GET information
         echo "<h3><a href='following.php?user=$uid'>Following: $numFollowing[0]</a></h3>";
 
         ?>
         <!-- When follow button is pressed db will be updated -->
         <form action="" method='post'>
             <?php
-            //checking if user is logged in and on a profile that is not theirs
+            /*
+                Follow Feature: Creating form with follow/unfollow button that updates dynamically
+            */
+
+            //checking if session variable is set
             if (isset(($_SESSION["loggedin"]))) {
+                //checking the user is on somebody elses profile and is logged in
                 if (!$isMe && $_SESSION["loggedin"]) {
+                    //setting logged in user id
                     $loggedInUser = $_SESSION["userID"];
 
-                    //looking in db to see if logged in user is following clicked user
+                    //query checking db to see if logged in user is already following the selected user
                     $queryIsFollowing = "SELECT COUNT(*) 
                                          FROM `following` 
                                          WHERE `user_id` = '{$loggedInUser}'
                                          AND `followed_user_id` = '{$uid}'";
+                    //executing query
                     $resultIsFollowing = $mysqli->query($queryIsFollowing);
 
-
                     if ($resultIsFollowing) {
+                        //getting result from query
                         $isFollowing = $resultIsFollowing->fetch_row();
-                        //$test = 0;
-                        //if user is not following user
+
+                        //if the value from db is zero then the user is not following the selected user
                         if ($isFollowing[0] == 0) {
+                            //therefore create a button to follow the user, where the post value is the users id
                             echo "<button type='submit' id='followButton' name='followButton' value=$uid>Follow</button>";
                         }
-                        //if user is following the user
+                        //if the value from db is not zero then the user is following the selected user
                         else {
+                            //therefore create a button to unfollow the user, where the post value is the users id
                             echo "<button type='submit' id='unfollowButton' name='unfollowButton' value=$uid>Unfollow</button>";
                         }
                     }
@@ -119,10 +165,10 @@ if (isset($_POST['unfollowButton'])) {
             ?>
         </form>
         <?php
-            require "includes/block.php";
+        require "includes/block.php";
         ?>
         <form action="" method='post'>
-            <input type='submit' value='block' name='block'/>
+            <input type='submit' value='block' name='block' />
         </form>
 
     </div>
