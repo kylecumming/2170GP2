@@ -23,7 +23,7 @@ if (!isset($_SESSION['userID'])) {
 } else {
     echo $_SESSION['userID'];
     $result;
-    $query = "SELECT P.post, P.post_date, P.username, P.post_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
+    $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
                                  FROM `users` U
                                  JOIN `following` F ON (U.user_id = F.user_id)
                                  LEFT JOIN `shares` S ON (F.followed_user_id = S.user_id)
@@ -91,10 +91,11 @@ if (!isset($_SESSION['userID'])) {
                         //$results = $mysqli->query($user_query);
                     //}
                     require "likes.php";
-                
+                    //like button
                     echo "<form action='index.php' method='GET'>
                             <input type='submit' value='like' name='like$row[post_id]'/>
-                          </form>  
+                          </form> 
+                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='btn btn-primary'>User Profile</a>
                     </section>";
         $resultIndex++;
     }
