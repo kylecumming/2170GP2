@@ -1,5 +1,9 @@
 <!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
 I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+
+<!--
+    Created this page to be accessed by only admins to view all users and create new users. Created by: Eric Dowell B00777865
+-->
 <?php
     include_once "includes/header.php";
     echo "<main class='container'>";
