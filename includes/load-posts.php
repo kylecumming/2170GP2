@@ -108,14 +108,13 @@ if (!isset($_SESSION['userID'])) {
                     echo "<div class='d-flex'><form action='index.php' method='GET'>
                             <input type='submit' value='♥ Like'  class='like-btn' name='like$row[post_id]'/>
                           </form> 
-                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='view-btn'>User Profile</a>
-                          </div>";
+                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='view-btn'>User Profile</a>";
 
                           //Share button (done by Scott Myrden)
                     if ($row["user_id"]!=$_SESSION["userID"]){
-                        echo '<a href="includes/share.php?postshare='.$row["post_id"].'&profile='.$row["user_id"].'">Share</a>';
+                        echo '<a class="view-btn" href="includes/share.php?postshare='.$row["post_id"].'&profile='.$row["user_id"].'">Share</a>';
                     }
-                    echo "</section>";
+                    echo "</div></section>";
         $resultIndex++;
     }
 }
