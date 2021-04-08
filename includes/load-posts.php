@@ -54,7 +54,7 @@ if (!isset($_SESSION['userID'])) {
         foreach ($keywords as $k) {
             $wildCarded .= $k . "%";
         }
-        echo $keywords;
+        
         //If searched by name
         if ($_POST['searchOption'] == "name") {
             $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
@@ -74,7 +74,7 @@ if (!isset($_SESSION['userID'])) {
                             U.username LIKE '$wildCarded'
                             ORDER BY P.post_date DESC";
         }
-        echo $query;
+        
     } else //NOTE (Ben) : If no keywords given currently it shows all posts
     {
         $query .= "ORDER BY P.post_date DESC";
