@@ -53,10 +53,10 @@
         </form>
 
     </section>
-
+    
 <?php
     }
-
+    echo "<div class='update-message'>";
     if(isset($_POST['submitAdmin'])){
         if(!empty($_POST["username"]) && !empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"])  && !empty($_POST["password"]) && !empty($_POST["adminAbility"])  ){
             $username = $_POST["username"];
@@ -81,13 +81,13 @@
                 echo "<h3>User was not added. Please try again.</h3>";
             }
         } else{
-            echo "<h3>Please try again.</h3>";
+            echo "<h3>Please try again.</h3> ";
         }
     }
 
 
 ?>
-
+</div>
 
 <?php
     $user_query = "SELECT * FROM `users`";
@@ -106,7 +106,7 @@
                 <th>Email</th>
                 <th>Password</th>
                 <th>Admin</th>
-            <tr>
+    </tr>
     <?php
 
         $count = 1;
@@ -122,13 +122,15 @@
                 <td> <?php echo $row['admin']; ?></td> 
             </tr>
 <?php
-            echo "<br>";
+        
             $count++;
         }
-        echo "</table>";
-        echo "</section>";
+    
+    
     }
 ?>
+</table>
+</section>
 
 </main>
 

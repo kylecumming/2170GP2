@@ -1,12 +1,8 @@
+<?php
+require_once "includes/header.php";
+?>
 
-        <?php
-        session_start();
-        include "includes/db.php";
-        
-        include "includes/header.php";
-
-        ?>
-        <main class="container main-login">
+<main class="container main-login">
             <h2 class="login-heading">Please login</h2>
             <form action="login.php" method="post">
                 <div class="login-input">
@@ -64,13 +60,6 @@
                 }
             ?>
         </main>
-        <footer class="py-5 footer">
-			<div class="container">
-			
-				<p class="mb-1">&copy; 2021 JediTweeps Inc.</p>
-			</div>
-		</footer>
-
-		
-    </body>
-</html>
+<?php
+require_once "includes/footer.php";
+?>
