@@ -106,7 +106,7 @@ if (!isset($_SESSION['userID'])) {
 
                           //Share button (done by Scott Myrden)
                     if ($row["user_id"]!=$_SESSION["userID"]){
-                        echo '<a href="share.php?postshare='.$row["post_id"].'">Share</a>';
+                        echo '<a href="includes/share.php?postshare='.$row["post_id"].'">Share</a>';
                     }
                     echo "</section>";
         $resultIndex++;
