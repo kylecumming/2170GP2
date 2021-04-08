@@ -56,4 +56,21 @@ as well as interact with other users by following, liking and sharing micro-blog
         Date accessed: Apr 2 2021
         Author: Ben Lee
 
+2. https://getbootstrap.com/docs/4.0/components/navbar/
+    Created By: BootStrap 
+    Accessed On: 31 March, 2021
+
+3. Copied from starter code given for assignment 3 by Dr. Raghav Sampangi 
+    Accessed On 31 March, 2021
+    Bootstrap core on java
+
+4. https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+    Created By: Flexbox
+    Accessed On: 07 April, 2021
+    how create sticky footer
+
+5. https://www.w3docs.com/snippets/css/how-to-disable-the-resizing-of-the-textarea-element.html
+    Created By: W3docs
+    Accessed On: 31 March, 2021 
+    how to make textearea of fix size*/
  - 
