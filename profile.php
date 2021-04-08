@@ -174,7 +174,7 @@ if (isset($_POST['unfollowButton'])) {
         <?php
             require "includes/block.php";
         ?>
-        //Button to block users
+        <!--Button to block users-->
         <form action="" method='post'>
             <input type='submit' value='Block' name='block'/>
         </form>
