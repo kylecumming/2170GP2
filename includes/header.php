@@ -1,5 +1,7 @@
 <!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
 I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+<!-- Added ability to log in to session: Keaton Gibb B00833276
+This really helped me know how to use $_POST better and $_SESSION which helped me with my individual assignments-->
 
 <?php
 session_start();
@@ -88,7 +90,7 @@ session_start();
                     <li class="nav-link">
                         <?php
                         if (!empty($_SESSION['loggedin'])) {
-                            if ($_SESSION['loggedin']) { //if logged in (still need to know how we are tracking user)
+                            if ($_SESSION['loggedin']) { //if logged in 
                                 echo '<a class="sign" href="includes/logout.php">Logout</a>';
                             } else {
                                 echo '<a class="sign" href="login.php">Login</a>';
