@@ -36,9 +36,9 @@
 - User Story #:
 - User Story #:
 - 
-- Scott Myrden B00751830 sc502051@dal.ca Link to hosted website
-- User Story #:
-- User Story #:
+- Scott Myrden B00751830 sc502051@dal.ca Link to hosted website https://web.cs.dal.ca/~smyrden/2170-group-project-2-develop/index.php
+- User Story #: "Share blog on my profile"
+- User Story #: "View my profile after I have logged in"
 
 
 ## Name of the App: 
