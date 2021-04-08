@@ -15,8 +15,8 @@
 - User Story #9: "Follow" other micro-blog authors
 -
 - Keaton Gibb B00833276 kgibb@dal.ca Link to hosted website
-- User Story #:
-- User Story #:
+- User Story #:1 Log into session
+- User Story #:3 Log out
 - 
 - Kyle Cumming B00773076 Kyle.Cumming@dal.ca Link to hosted website
 - User Story #:
