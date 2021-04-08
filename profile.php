@@ -10,7 +10,17 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
     * and sql scripts that insert a new row or deletes a row in the following db table
     * 
     * Comments with "Follow Feature" Represent the code written by Jake Coyne
+    *
+    *
+    *
+    *
+    * Feature: As a user I want to view my profile after I have logged in
+    * Developed By: Scott Myrden; B00751830; sc502051@dal.ca
+    * This feature allows a logged in user to visit other users profiles, and their own 
+    * 
 */
+
+//Scott Code begin
 require_once "includes/header.php";
 
 if (!isset($_GET["clickedUser"])) {
@@ -24,7 +34,7 @@ $query = "SELECT * FROM `users` WHERE `user_id` = '{$uid}'";
 $result = $mysqli->query($query);
 $userData = $result->fetch_assoc();
 $isMe = false;
-
+//Scott Code end
 ?>
 
 <?php
@@ -81,6 +91,7 @@ if (isset($_POST['unfollowButton'])) {
         }
     }
 }
+//Scott Code begin
 ?>
 <main class="container profile-container">
     <div id="userInfo">
@@ -128,7 +139,7 @@ if (isset($_POST['unfollowButton'])) {
         $numFollowing = $result->fetch_row();
 
         echo "<h3 class='align-center'><a href='following.php?user=$uid'>$numFollowing[0]<br><span class='lable-profile'>FOLLOWING<span></a></h3>";
-
+        //Scott Code end
         ?>
         
         </div>
@@ -186,7 +197,7 @@ if (isset($_POST['unfollowButton'])) {
         
 
         <?php
-
+        //Scott code begin
         $query = "SELECT P.post, P.post_date, P.username
                                  FROM `users` U
                                  JOIN `posts` P  ON (U.user_id = P.user_id)
@@ -203,7 +214,6 @@ if (isset($_POST['unfollowButton'])) {
             <section id="result$resultStr" class="space-above-below">            
             <h6 class="fw-light post-detail">Posted by {$row['username']} on {$row['post_date']}</h6>
             <p class="post-content">{$row['post']}</p> 
-            <p class="text-muted">Likes: {$row['likeCount']}</p>
             </section>
 
 END;
@@ -219,4 +229,6 @@ END;
  -->
     </div>
 </main>
-<?php include_once "includes/footer.php" ?>
+<?php include_once "includes/footer.php" 
+//Scott Code end
+?>
