@@ -21,7 +21,13 @@ session_regenerate_id(true);
 //not needed db is required in header file
 //require_once("includes/db.php");
 
-//Loading posts of people I follow By Ben Lee starts here
+/*
+    * Loading posts of people I follow By Ben Lee starts here
+    * Developed By: Ben Lee; B00832368; bn628547@dal.ca
+    * Uses the session user id variable to load posts dynamically
+    *
+*/
+
 
 if (!isset($_SESSION['userID'])) {
     echo "Must be logged in to view posts or to search.";
