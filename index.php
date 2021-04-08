@@ -20,7 +20,6 @@ require_once "includes/header.php";
     ?>
     <div id="post-blog">
         <form class="input-form" action="includes/submit.php">
-            <span class="username">RR</span>
             <label for="blog-posting" class="d-none">Write a blog</label>
             <textarea id="blog-posting" name="blog" rows="4" cols="50" placeholder="Tell me your mind...." maxlength="240"></textarea>
             <button type="submit" class="submit-post">Post</button>
