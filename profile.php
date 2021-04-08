@@ -184,11 +184,13 @@ if (isset($_POST['unfollowButton'])) {
         </form>
         <?php
             require "includes/block.php";
+            if($_SESSION["userID"]!=$uid){
         ?>
         <!--Button to block users done by  (Kyle Cumming B00773076)-->
         <form action="" method='post'>
             <input type='submit' value='Block' name='block'/>
         </form>
+        <?php }?>
         </div>
 
     </div>
