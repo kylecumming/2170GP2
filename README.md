@@ -1,13 +1,13 @@
 # 2170 - Group Project 2
 
-Login Information from Database:
-Username: Scott_Myrden Password: Scott_password Role: Admin
-Username: Eric_Dowell Password: Eric_password Role: Admin
-Username: Keaton_Gibb Password: Keaton_password Role: Admin
-Username: Sahil_Sorathiya Password: Sahil_password Role: Admin
-Username: Kyle_Cumming Password: Kyle_password Role: Normal User
-Username: Jake_Coyne Password: Jake_password Role: Normal User
-Username: Ben_Lee Password: Ben_password Role: Normal User
+## Login Information from Database:
+- Username: Scott_Myrden Password: Scott_password Role: Admin
+- Username: Eric_Dowell Password: Eric_password Role: Admin
+- Username: Keaton_Gibb Password: Keaton_password Role: Admin
+- Username: Sahil_Sorathiya Password: Sahil_password Role: Admin
+- Username: Kyle_Cumming Password: Kyle_password Role: Normal User
+- Username: Jake_Coyne Password: Jake_password Role: Normal User
+- Username: Ben_Lee Password: Ben_password Role: Normal User
 
 
 ## Members:
