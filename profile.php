@@ -214,12 +214,13 @@ if (isset($_POST['unfollowButton'])) {
             <section id="result$resultStr" class="space-above-below">            
             <h6 class="fw-light post-detail">Posted by {$row['username']} on {$row['post_date']}</h6>
             <p class="post-content">{$row['post']}</p> 
-            </section>
+            
+            END;
             if (!$isMe){
                 echo '<a href="includes/share.php?postshare='.$row["post_id"].'&profile='.$row["user_id"].'">Share</a>';
             }
-
-END;
+            echo "</section>";
+            
             $resultIndex++;
         }
 
