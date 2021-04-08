@@ -1,3 +1,7 @@
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+
+
 <?php
 session_start();
 ?>
@@ -9,10 +13,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JediTweeps</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Copied from starter code given for assignment 3 by Dr. Raghav Sampangi 
+    Accessed On 31 March, 2021
+    Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 

@@ -1,3 +1,6 @@
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+
 <?php
 //checking if session has started, if not start session
 if (session_status() == PHP_SESSION_NONE) {
