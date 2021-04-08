@@ -34,7 +34,7 @@ if (!isset($_SESSION['userID'])) {
                             U.user_id = {$_SESSION['userID']} AND 
                             NOT EXISTS (SELECT blocks.* FROM blocks WHERE 
                                        (blocks.blocked_user_id = {$_SESSION['userID']} AND blocks.user_id = P.user_id) OR
-                                       (blocks.blocked_user_id = p.user_id AND blocks.user_id = {$_SESSION['userID']})) ";
+                                       (blocks.blocked_user_id = P.user_id AND blocks.user_id = {$_SESSION['userID']})) ";
 
     //Check to see if any keywords were given
     if (isset($_POST['searchKeywords']) && $_POST['searchKeywords'] != "") {
