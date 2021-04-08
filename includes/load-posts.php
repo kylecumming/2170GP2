@@ -54,20 +54,27 @@ if (!isset($_SESSION['userID'])) {
         foreach ($keywords as $k) {
             $wildCarded .= $k . "%";
         }
-
+        echo $keywords;
         //If searched by name
         if ($_POST['searchOption'] == "name") {
-            $query .= "AND
+            $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
+                        FROM `users` U
+                        NATURAL JOIN `posts` P
+                        WHERE
                            (U.first_name LIKE '$wildCarded' OR
                             U.last_name  LIKE '$wildCarded')
                             ORDER BY P.post_date DESC";
         }
         //If searched by username
         else if ($_POST['searchOption'] == "uname") {
-            $query .= "AND
+            $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
+                        FROM `users` U
+                        NATURAL JOIN `posts` P
+                        WHERE                           
                             U.username LIKE '$wildCarded'
                             ORDER BY P.post_date DESC";
         }
+        echo $query;
     } else //NOTE (Ben) : If no keywords given currently it shows all posts
     {
         $query .= "ORDER BY P.post_date DESC";
