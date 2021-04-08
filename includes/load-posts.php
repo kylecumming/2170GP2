@@ -8,6 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 session_regenerate_id(true);
 
+/*NOTE (Ben): Should we allow searching while not logged in? Then you could view blocked user's content*/
 /*
     This code to implement post data retrieval, display and search has been used with some
     modification from my submission for Assignment 3 in CSCI 2170 (Winter 2021).
@@ -20,7 +21,8 @@ session_regenerate_id(true);
 //not needed db is required in header file
 //require_once("includes/db.php");
 
-/*NOTE (Ben): Should we allow searching while not logged in? Then you could view blocked user's content*/
+//Loading posts of people I follow By Ben Lee starts here
+
 if (!isset($_SESSION['userID'])) {
     echo "Must be logged in to view posts or to search.";
 } else {
@@ -75,6 +77,7 @@ if (!isset($_SESSION['userID'])) {
         echo "<p>Sorry, no tweeps available</p>";
     }
 
+//Ben's section ends here
     $resultIndex = 0;
     //Output any rows returned
     while ($row = $result->fetch_assoc()) {
