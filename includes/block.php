@@ -1,3 +1,4 @@
+//Database query  to add blocked users to the database (done by Kyle Cumming B00773076)
 <?php
         if($_POST['block']){
             $userprofile = $_SESSION["userID"];
