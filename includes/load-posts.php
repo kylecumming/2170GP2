@@ -104,7 +104,7 @@ if (!isset($_SESSION['userID'])) {
                           <a href='profile.php?clickedUser=$row[user_id]' role='button' class='view-btn'>User Profile</a>
                           </div>";
 
-                          //Share button
+                          //Share button (done by Scott Myrden)
                     if ($row["user_id"]!=$_SESSION["userID"]){
                         echo '<a href="share.php?postshare='.$row["post_id"].'">Share</a>';
                     }
