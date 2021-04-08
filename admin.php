@@ -26,7 +26,7 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
 
 ?>
     
-        <form method="POST">
+    <form method="POST">
         <div class="create-user text-center">
             <div class="d-flex flex-row user-name">
                 <label for="fname" class="d-none">First Name:</label>
@@ -54,10 +54,10 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
         </form>
 
     </section>
-    
+
 <?php
-    }
-    echo "<div class='update-message'>";
+     }
+     echo "<div class='update-message'>";
     if(isset($_POST['submitAdmin'])){
         if(!empty($_POST["username"]) && !empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"])  && !empty($_POST["password"]) && !empty($_POST["adminAbility"])  ){
             $username = $_POST["username"];
@@ -82,7 +82,7 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
                 echo "<h3>User was not added. Please try again.</h3>";
             }
         } else{
-            echo "<h3>Please try again.</h3> ";
+            echo "<h3>Please try again.</h3>";
         }
     }
 
@@ -107,7 +107,7 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
                 <th>Email</th>
                 <th>Password</th>
                 <th>Admin</th>
-    </tr>
+            <tr>
     <?php
 
         $count = 1;
@@ -121,7 +121,7 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
                 <td> <?php echo $row['email']; ?></td>
                 <td> <?php echo $row['password']; ?></td>
                 <td> <?php echo $row['admin']; ?></td> 
-            </tr>
+                </tr>
 <?php
         
             $count++;
@@ -134,8 +134,6 @@ I learned some of the elements of bootstrap and how to work with CSS on multiple
 </section>
 
 </main>
-
-
 
 <?php
     include_once "includes/footer.php";
