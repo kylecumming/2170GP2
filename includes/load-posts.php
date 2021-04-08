@@ -90,7 +90,7 @@ if (!isset($_SESSION['userID'])) {
                     
                     
                     require "likes.php";
-                    //like button
+                    //like button (done by Kyle Cumming, B00773076)
 
                     echo "<div class='d-flex'><form action='index.php' method='GET'>
                             <input type='submit' value='♥ Like'  class='like-btn' name='like$row[post_id]'/>
