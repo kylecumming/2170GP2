@@ -1,3 +1,4 @@
+//Database Query to add the likes to the database (done by Kyle Cumming, B00773076)
 <?php 
 
 if($_GET['like' . $row[post_id]]){
