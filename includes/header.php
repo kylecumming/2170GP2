@@ -1,3 +1,6 @@
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+
 <?php
 session_start();
 ?>
@@ -9,11 +12,12 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JediTweeps</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Copied from starter code given for assignment 3 by Dr. Raghav Sampangi 
+    Accessed On 31 March, 2021
+    Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -37,21 +41,24 @@ session_start();
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <?php
-                        if (isset($_SESSION["userID"])){
-                        echo '<li class="nav-item">';
-                        echo    '<a class="nav-link" href="profile.php?clickedUser='.$_SESSION["userID"].'">My Profile</a>';
-                        echo '</li>';
-                        }
+                            if(($_SESSION['admin'] == 0  || $_SESSION['admin'] == 1) && isset($_SESSION['admin'])){
                         ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php?clickedUser=<?php echo $_SESSION["userID"] ?>">My Profile</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Feeds</a>
                         </li>
+                        <?php
+                                
+                            }
+                        ?>
                         <?php
                         if (isset($_SESSION['admin'])) {
                             if ($_SESSION['admin'] == 1) {
                         ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="includes/admin.php">Administrative</a>
+                                    <a class="nav-link" href="admin.php">Administrative</a>
                                 </li>
                         <?php
                             }
@@ -89,8 +96,6 @@ session_start();
                         } else {
                             echo '<a class="sign" href="login.php">Login</a>';
                         }
-
-
                         ?>
                     </li>
                 </ul>

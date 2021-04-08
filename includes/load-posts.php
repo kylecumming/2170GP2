@@ -1,3 +1,6 @@
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
+
 <?php
 //checking if session has started, if not start session
 if (session_status() == PHP_SESSION_NONE) {
@@ -21,7 +24,6 @@ session_regenerate_id(true);
 if (!isset($_SESSION['userID'])) {
     echo "Must be logged in to view posts or to search.";
 } else {
-    echo $_SESSION['userID'];
     $result;
     $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id, (SELECT COUNT(p2.post_id) FROM `likes` L JOIN `posts` p2 ON (L.post_id = p2.post_id) WHERE p2.post_id = P.post_id) AS likeCount
                                  FROM `users` U
@@ -77,8 +79,7 @@ if (!isset($_SESSION['userID'])) {
     //Output any rows returned
     while ($row = $result->fetch_assoc()) {
 
-        echo "
-                    <hr>
+        echo "<hr>
                     <section id='result1' class='space-above-below'>            
                     <h6 class='fw-light'>Posted by {$row['username']} on {$row['post_date']}</h6>
                     <p class=''>{$row['post']}</p> 
@@ -92,16 +93,18 @@ if (!isset($_SESSION['userID'])) {
                     //}
                     require "likes.php";
                     //like button
-                    echo "<form action='index.php' method='GET'>
-                            <input type='submit' value='like' name='like$row[post_id]'/>
+
+                    echo "<div class='d-flex'><form action='index.php' method='GET'>
+                            <input type='submit' value='♥ Like'  class='like-btn' name='like$row[post_id]'/>
                           </form> 
-                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='btn btn-primary'>User Profile</a>";
-                    //Share button
+                          <a href='profile.php?clickedUser=$row[user_id]' role='button' class='view-btn'>User Profile</a>
+                          </div>";
+
+                          //Share button
                     if ($row["user_id"]!=$_SESSION["userID"]){
                         echo '<a href="share.php?postshare='.$row["post_id"].'">Share</a>';
                     }
-                          
-                    echo '</section>';
+                    echo "</section>";
         $resultIndex++;
     }
 }

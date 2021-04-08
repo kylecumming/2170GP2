@@ -1,3 +1,6 @@
+
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
 <?php
 /*
     * Feature: As a micro blog author I want to follow other micro blog authors
@@ -80,7 +83,7 @@ if (isset($_POST['unfollowButton'])) {
     }
 }
 ?>
-<main class="container">
+<main class="container profile-container">
     <div id="userInfo">
         <h2 style="text-align: center">
             <?php
@@ -93,67 +96,72 @@ if (isset($_POST['unfollowButton'])) {
 
             ?>
             Profile </h2>
-        <span class="username" style="align-content: center"><?php echo substr($userData["first_name"], 0, 1) . substr($userData["last_name"], 0, 1) ?></span>
+            <div class="info-display">
+            <div class="user-info text-center">
+        <span class="user-letter" style="align-content: center"><?php echo substr($userData["first_name"], 0, 1) . substr($userData["last_name"], 0, 1) ?></span>
+
         <?php
+        echo "<p class='h4'>";
+        echo $userData["first_name"] . " " . $userData["last_name"];
+        echo "</p></div>";
         $query = "SELECT COUNT(*) FROM `posts` WHERE `user_id` = '{$uid}'";
         $result = $mysqli->query($query);
         $numPosts = $result->fetch_row();
-
-        echo "<h3>Posts: $numPosts[0]</h3>";
+        
+        /*
+                Follow Feature: Made Follwers anchor link w/ GET url to pass uid to followers php pages
+        */
+        //anchor link to redirect to followers.php with uid GET information
+        echo "<h3>$numPosts[0]<br><span class='lable-profile'>POSTS<span></h3>";
 
         $query = "SELECT COUNT(*) FROM `following` WHERE `followed_user_id` = '{$uid}'";
         $result = $mysqli->query($query);
         $numFollowers = $result->fetch_row();
 
         /*
-                Follow Feature: Made Follwers anchor link w/ GET url to pass uid to followers php pages
+                Follow Feature: Made Follwing anchor link w/ GET url to pass uid to followers php pages
         */
-        //anchor link to redirect to followers.php with uid GET information
-        echo "<h3><a href='followers.php?user=$uid'>Followers: $numFollowers[0]</a></h3>";
+        //anchor link to redirect to following.php with uid GET information
+        echo "<h3><a href='followers.php?user=$uid'>$numFollowers[0]</a><br><span class='lable-profile'>FOLLOWERS<span></h3>";
 
         $query = "SELECT COUNT(*) FROM `following` WHERE `user_id` = '{$uid}'";
         $result = $mysqli->query($query);
         $numFollowing = $result->fetch_row();
 
-        /*
-                Follow Feature: Made Follwing anchor link w/ GET url to pass uid to followers php pages
-        */
-        //anchor link to redirect to following.php with uid GET information
-        echo "<h3><a href='following.php?user=$uid'>Following: $numFollowing[0]</a></h3>";
+        echo "<h3 class='align-center'><a href='following.php?user=$uid'>$numFollowing[0]<br><span class='lable-profile'>FOLLOWING<span></a></h3>";
 
         ?>
+        
+        </div>
+        <div class="action-button d-flex"> 
         <!-- When follow button is pressed db will be updated -->
         <form action="" method='post'>
             <?php
-            /*
-                Follow Feature: Creating form with follow/unfollow button that updates dynamically
-            */
-
-            //checking if session variable is set
+            //checking if user is logged in and on a profile that is not theirs
             if (isset(($_SESSION["loggedin"]))) {
-                //checking the user is on somebody elses profile and is logged in
                 if (!$isMe && $_SESSION["loggedin"]) {
-                    //setting logged in user id
                     $loggedInUser = $_SESSION["userID"];
 
-                    //query checking db to see if logged in user is already following the selected user
+                    //looking in db to see if logged in user is following clicked user
                     $queryIsFollowing = "SELECT COUNT(*) 
                                          FROM `following` 
                                          WHERE `user_id` = '{$loggedInUser}'
                                          AND `followed_user_id` = '{$uid}'";
-                    //executing query
+                                         //executing query
                     $resultIsFollowing = $mysqli->query($queryIsFollowing);
 
+
                     if ($resultIsFollowing) {
+
                         //getting result from query
                         $isFollowing = $resultIsFollowing->fetch_row();
-
-                        //if the value from db is zero then the user is not following the selected user
+                        //$test = 0;
+                        //if user is not following user
                         if ($isFollowing[0] == 0) {
                             //therefore create a button to follow the user, where the post value is the users id
                             echo "<button type='submit' id='followButton' name='followButton' value=$uid>Follow</button>";
                         }
-                        //if the value from db is not zero then the user is following the selected user
+                        //if user is following the user
                         else {
                             //therefore create a button to unfollow the user, where the post value is the users id
                             echo "<button type='submit' id='unfollowButton' name='unfollowButton' value=$uid>Unfollow</button>";
@@ -165,28 +173,21 @@ if (isset($_POST['unfollowButton'])) {
             ?>
         </form>
         <?php
-        require "includes/block.php";
+            require "includes/block.php";
         ?>
         <form action="" method='post'>
-            <input type='submit' value='block' name='block' />
+            <input type='submit' value='Block' name='block'/>
         </form>
+        </div>
 
     </div>
     <div id="activityFeed">
-        <h2>
-            <?php
-            if ($isMe) {
-                echo "My";
-            } else {
-                echo $userData["first_name"] . "'s";
-            }
-
-            ?>
-            Activity</h2>
+       
+        
 
         <?php
 
-        $query = "SELECT P.post, P.post_date, P.username, P.post_id, P.user_id
+        $query = "SELECT P.post, P.post_date, P.username
                                  FROM `users` U
                                  JOIN `posts` P  ON (U.user_id = P.user_id)
                                  LEFT JOIN `shares` S ON (U.user_id = S.user_id) 
@@ -200,15 +201,12 @@ if (isset($_POST['unfollowButton'])) {
             echo <<<END
             <hr>
             <section id="result$resultStr" class="space-above-below">            
-            <h6 class="fw-light">Posted by {$row['username']} on {$row['post_date']}</h6>
-            <p class="">{$row['post']}</p> 
+            <h6 class="fw-light post-detail">Posted by {$row['username']} on {$row['post_date']}</h6>
+            <p class="post-content">{$row['post']}</p> 
             <p class="text-muted">Likes: {$row['likeCount']}</p>
-            END;
-            if (!$isMe){
-                echo '<a href="includes/share.php?postshare='.$row["post_id"].'&profile='.$row["user_id"].'">Share</a>';
-            }
+            </section>
 
-            echo "</section>";
+END;
             $resultIndex++;
         }
 

@@ -1,3 +1,6 @@
+
+<!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
+I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
 <?php
 /*
     * Feature: As a micro blog author I want to see a list of the authors that follow me
@@ -9,7 +12,7 @@
 */
 require_once "includes/header.php"
 ?>
-<main lass="container">
+<main class="container following-main">
     <h1>Followers</h1>
     <?php
     //checking that the user is set in GET Variable
