@@ -1,4 +1,3 @@
-
 <!-- Added some of the element and classes to work with using CSS : Sahil Sorathiya B00838439
 I learned some of the elements of bootstrap and how to work with CSS on multiple pages together. Also refreshed my css knowledge -->
 <?php
@@ -175,6 +174,7 @@ if (isset($_POST['unfollowButton'])) {
         <?php
             require "includes/block.php";
         ?>
+        //Button to block users
         <form action="" method='post'>
             <input type='submit' value='Block' name='block'/>
         </form>
