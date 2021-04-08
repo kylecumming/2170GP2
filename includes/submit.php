@@ -19,8 +19,6 @@
 	
 	$results = $mysqli->query($user_query);
 
-	
-
 	if($results === true){
 		$_SESSION["submitted"] = 1;
 	}
